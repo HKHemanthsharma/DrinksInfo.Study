@@ -1,0 +1,15 @@
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace DrinksInfo.Study
+{
+    public class Program
+    {
+       public static void Main(string[] args)
+        {
+            string baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
+            Cocktails coctails = new Cocktails(baseUrl);
+            var CategoryList=coctails.GetCategoryAsync().GetAwaiter().GetResult();
+
+        }
+    }
+}
