@@ -9,6 +9,7 @@ namespace DrinksInfo.Study
             string baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
             Cocktails coctails = new Cocktails(baseUrl);
             var CategoryList=coctails.GetCategoryAsync().GetAwaiter().GetResult();
+            UserOutputs.CategoryMenu(CategoryList);
 
         }
     }

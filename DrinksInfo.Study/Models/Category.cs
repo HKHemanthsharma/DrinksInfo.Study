@@ -11,7 +11,7 @@ namespace DrinksInfo.Study.Models
     
     public class Category
     {
-        [propery: JsonPropertyName("strCategory")]
+        [property: JsonPropertyName("strCategory")]
         public string CategoryName { get; set; }
     }
 }

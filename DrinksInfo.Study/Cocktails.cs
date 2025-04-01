@@ -17,11 +17,19 @@ namespace DrinksInfo.Study
         }
         public async Task<Drinksdomain> GetCategoryAsync()
         {
-            string CategoryUrl = baseUrl + "/list.php?c=list";
-            HttpClient client = new HttpClient();
-            Stream stream = await client.GetStreamAsync(CategoryUrl);
-            Drinksdomain Categorylist = await JsonSerializer.DeserializeAsync<Drinksdomain>(stream);
-            return Categorylist;
+            try
+            {
+                string CategoryUrl = baseUrl + "/list.php?c=list";
+                HttpClient client = new HttpClient();
+                Stream stream = await client.GetStreamAsync(CategoryUrl);
+                Drinksdomain Categorylist = await JsonSerializer.DeserializeAsync<Drinksdomain>(stream);
+                return Categorylist;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
     }
 }
