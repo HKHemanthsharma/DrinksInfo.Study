@@ -31,5 +31,21 @@ namespace DrinksInfo.Study
             }
             return null;
         }
+        public async Task<CategoryDrinks> GetDrinksByCategoryAsync(string categoryName)
+        {
+            try
+            {
+                string CategoryUrl = baseUrl + $"/filter.php?c={categoryName}";
+                HttpClient client = new HttpClient();
+                Stream stream = await client.GetStreamAsync(CategoryUrl);
+                CategoryDrinks drinksList = await JsonSerializer.DeserializeAsync<CategoryDrinks>(stream);
+                return drinksList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
     }
 }
