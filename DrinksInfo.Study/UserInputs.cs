@@ -20,5 +20,21 @@ namespace DrinksInfo.Study
                     .AddChoices(categories.drinkCategories.Select(d => d.CategoryName)));
             return chosenCategory;
         }
+        public static string ChooseId(List<string> drinksId)
+        {
+            AnsiConsole.MarkupLine("Please Enter the [yellow]ID[/] to view the [pink3]Drinks info[/]");
+            AnsiConsole.MarkupLine("Press [yellow]'X'[/] to go [red]back to main menu[/]");
+            string userChoice = Console.ReadLine();
+            if (userChoice.ToLower() != "x")
+            {
+                while ((!drinksId.Contains(userChoice)))
+                {
+                    AnsiConsole.MarkupLine("Please enter a [red] valid ID[/] from the table:");
+                    userChoice = Console.ReadLine();
+                }
+                return userChoice;
+            }
+            return userChoice;
+        }
     }
 }

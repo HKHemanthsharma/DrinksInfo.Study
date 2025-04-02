@@ -47,5 +47,21 @@ namespace DrinksInfo.Study
             }
             return null;
         }
+        public async Task<InformationDrinks> GetDrinkInformationByIdAsync(string Id)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                string infoUrl = baseUrl + $"/lookup.php?i={Id}";
+                Stream stream = await client.GetStreamAsync(infoUrl);
+                InformationDrinks drinksinfo = await JsonSerializer.DeserializeAsync<InformationDrinks>(stream);
+                return drinksinfo;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
     }
 }
